@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package orkestraerp;
+option go_package = "github.com/semerps/microservices-proto/orkestraerp";
+
+service OrkestraErp {
+  rpc GetPage(GetPageParams) returns (ResponsePage) {}
+}
+
+message GetPageParams {
+  int32 Period = 1;
+  optional string InputType = 2;
+  string OutputType = 3;
+  string EntityName = 4;
+  int32 ClassType = 5;
+  optional string Fields = 6;
+  int32 Reference = 7;
+  optional int32 PageSize = 8;
+  optional int32 PageIndex = 9;
+  optional Filters Filters = 10;
+  optional OrderBy OrderBy = 11;
+}
+
+message ResponsePage{
+  string xml = 1;
+}
+
+message Filters {
+  optional string Type = 1;
+  optional int32 NumValue = 2;
+  optional string StringValue = 3;
+  optional string Property = 4;
+  optional string Operator = 5;
+}
+
+message OrderBy {
+  optional string Property = 1;
+  bool Desc = 2;
+}
